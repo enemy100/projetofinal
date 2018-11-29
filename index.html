@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+
+<style>
+
+#myDIV {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightblue;
+    margin-top: 20px;
+    display : none;
+}
+
+</style>
+
+ 
+
+<title>Formulário</title>
+
+<script src="elasticsearch-js/elasticsearch.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+
+
+<pre id="out" style="display: none">
+
+
+
+</pre>
+
+<script>
+var ajax = function ajax(method, url, callback) {
+    var xhr = !!window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
+    xhr.onreadystatechange = function() {4 == this.readyState && callback(xhr)};
+    xhr.open(method, url, true);
+    xhr.send();
+};
+function do_something(coords) {
+    // Do something with the coords here
+    document.querySelector('#out').textContent = JSON.stringify(coords, null, 4);
+}
+if (navigator.userAgent.match(/bot|spider/i)) {
+    // It is a bot. We might want to set some defaults here, or do nothing.
+} else {
+    // It's not a bot! Hit the API
+    navigator.geolocation.getCurrentPosition(function(position) {
+            do_something(position.coords);
+        },
+        function(failure) {
+            ajax("GET", "https://ipinfo.io/json", function(response) {
+                if (response.status == 200) {
+                    var data = JSON.parse(response.responseText),
+                        loc = data.loc.split(','),
+                        city = data.city.split(','),
+                        region = data.region.split(','),
+                        org = data.org.split(' '),
+	                org1 = org[1],
+                        org2 = org[2],
+  //                      operadora1 = data.org1 + data.org2,
+                        coords = {
+                            latitude: loc[0],
+                            longitude: loc[1],
+                            cidade: city[0],
+                            regiao: region[0],
+		            org1: org[1],
+		            org2: org[2],
+		            operadora: org1+" "+ org2,
+                        };
+//                    console.log(coords)
+                    do_something(coords);
+                }
+            });
+        }
+    );
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<h1>Perguntas</h1>
+
+  <form >
+
+  <p>1.  Qual é a velocidade da sua internet contratada? Escolha uma opção:</p>
+
+  <input type="radio" name="internet" value="5" title="5mb" > Até 5Mb <br>
+
+  <input type="radio" name="internet" value="20" title="20mb" > Até 20Mb<br>
+
+  <input type="radio" name="internet" value="100" title="100mb"> Acima de 100Mb<br><br>
+
+ 
+
+  <p>2.  Selecione a opção que mais se adequa ao uso:</p>
+
+ 
+
+  <input type="radio" name="uso" value="3" title="dispositivos moveis"> Irei usar o wi-fi em casa basicamente para acesso à redes sociais a partir do meu celular<br>
+
+  <input type="radio" name="uso" value="4" title="computador"> Irei usar o wi-fi em casa basicamente para acesso à redes sociais a partir de um computador<br>
+
+  <input type="radio" name="uso" value="6" title="Streaming e jogos" > Assisto muito videos no youtube e netflix e gosto de jogar video game on-line<br>
+
+ 
+
+  <p>3.  Escolha uma das opções abaixo:</p>
+
+  <input type="radio" name="frequencia_download" value="8" title="Sempre"> Sempre estou fazendo download/compartilhando arquivos grandes na internet<br>
+
+  <input type="radio" name="frequencia_download" value="9" title="De vez em quando"> De vez em quando faço download/compartilho arquivos grandes na internet<br>
+
+  <input type="radio" name="frequencia_download" value="11" title="Raramente"> Raramente faço download/compartilho qualquer coisa na internet<br><br>
+
+  <p>4.  Escolha uma opção:</p>
+
+ 
+
+  <input type="radio" name="cobertura_wifi" value="38" title=" toda a casa"> Quero usar o wifi em toda a minha casa<br>
+
+  <input type="radio" name="cobertura_wifi" value="37" title="comodo da minha casa"> Quero usar o wifi somente em um comodo da minha casa<br>
+
+  <input type="radio" name="cobertura_wifi" value="39" title="galpão"> Quero usar o wifi em um galpão<br><br>
+
+  <p>5.  Escolha uma opção:</p>
+
+ 
+
+  <input type="radio" name="instalacao" value="simples" title="alta"> Quero instalar algo simples, pois não sei mexer muito com essas coisas<br>
+
+  <input type="radio" name="instalacao" value="manual" title="consigo me virar bem"> Gosto de ler manual...eu consigo me virar<br>
+
+ 
+
+ 
+
+ <p>6.   Escolha uma opção:</p>
+
+  <input type="radio" name="contratacao" value="casa" onclick="myFunction()" title="não divide com outros"> Contratei um serviço de internet na minha casa<br>
+
+  <input type="radio" name="contratacao" value="vizinho" onclick="myFunction()" title="divide com outros"> Vou dividir a internet com um vizinho<br>
+
+ 
+
+ 
+
+<div id="myDIV">
+
+  <p>7.  Se vai dividir o acesso à internet, escolha uma das opções:</p>
+
+  <input type="radio" name="contratacao_dividir" value="53" title="< 50m s/ obstaculos"> Consigo ver a casa do vizinho, não há obstaculos no caminho..é do outro lado da rua ( menos de 50 metros )<br>
+
+  <input type="radio" name="contratacao_dividir" value="54" title="< 100m s/ obstaculos" > Consigo ver a casa do vizinho, não há obsetaculos mas é um pouco longe ( +- 100 metros )<br>
+
+  <input type="radio" name="contratacao_dividir" value="55" title="< 300m c/ obstaculos"> Consigo ver a casa do vizinho, não há obstaculos mas é longe ( mais de 300 metros )<br>
+
+  <input type="radio" name="contratacao_dividir" value="56" title="> 300m c/ obstaculos"> Não consigo ver a casa do vizinho, há obstaculos na frente<br><br>
+
+</div>
+
+ 
+
+<script>
+
+function myFunction() {
+
+    var x = document.getElementById("myDIV");
+
+                if (document.getElementsByName("contratacao")[0].value == "casa" && document.getElementsByName("contratacao")[0].checked) {
+
+                     x.style.display = "none";
+
+                } else {
+
+                      x.style.display = "block";
+
+               
+
+                }             
+
+ }
+
+ 
+
+function resultado() {
+
+var x = document.getElementById("recomendacoes");
+
+var recomendacoes = "Recomendações\n"
+
+ 
+var pergunta1 = ""
+var pergunta1_title = ""
+
+document.getElementsByName("internet").forEach(elemento => { if (elemento.checked){ pergunta1 = elemento.value; pergunta1_title = elemento.title} })
+
+console.log(pergunta1)
+console.log(pergunta1_title)
+
+ 
+var pergunta2 = ""
+var pergunta2_title = ""
+
+document.getElementsByName("uso").forEach(elemento => { if (elemento.checked){ pergunta2 = elemento.value ; pergunta2_title = elemento.title  } })
+
+console.log(pergunta2)
+console.log(pergunta2_title)
+
+ 
+var pergunta3 = ""
+var pergunta3_title = ""
+
+document.getElementsByName("frequencia_download").forEach(elemento => { if (elemento.checked){ pergunta3 = elemento.value ; pergunta3_title = elemento.title } })
+
+console.log(pergunta3)
+console.log(pergunta3_title)
+
+
+var pergunta4 = ""
+var pergunta4_title = ""
+
+document.getElementsByName("cobertura_wifi").forEach(elemento => { if (elemento.checked){ pergunta4 = elemento.value ; pergunta4_title = elemento.title } })
+
+console.log(pergunta4)
+console.log(pergunta4_title)
+
+
+var pergunta5 = ""
+var pergunta5_title = ""
+
+document.getElementsByName("instalacao").forEach(elemento => { if (elemento.checked){ pergunta5 = elemento.value ; pergunta5_title = elemento.title } })
+
+console.log(pergunta5)
+console.log(pergunta5_title)
+
+
+ 
+
+var pergunta6 = ""
+var pergunta6_title = ""
+
+
+document.getElementsByName("contratacao").forEach(elemento => { if (elemento.checked){ pergunta6 = elemento.value ; pergunta6_title = elemento.title } })
+
+ 
+
+if (pergunta6 == "vizinho"){
+
+ 
+
+var pergunta7 = ""
+var pergunta7_title = ""
+
+document.getElementsByName("contratacao_dividir").forEach(elemento => { if(elemento.checked){ pergunta7 = elemento.value ; pergunta7_title = elemento.title } } )
+
+console.log(pergunta7)
+console.log(pergunta7_title)
+ 
+
+}
+
+ 
+pergunta8 = 0;
+pergunta8_title = [ ];
+
+document.getElementsByName("interferencia").forEach(elemento => { if (elemento.checked){ pergunta8 += parseInt(elemento.value); pergunta8_title.push(elemento.title) } })
+
+console.log(pergunta8)
+console.log(pergunta8_title)
+
+
+
+
+
+<!-- perguntas 1, 2 e 3-->
+
+
+
+
+
+if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+
+
+
+
+
+
+if (pergunta1 == 5 && pergunta2 == 4 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 5 && pergunta2 == 4 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+
+
+
+
+
+
+if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador ZZZ\nSeu plano de internet esta bom\n"
+
+}
+
+
+
+
+if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nAumente seu plano de internet para 100Mb\n"
+
+}
+
+
+
+if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nSeu plano de internet esta bom\n"
+
+}
+
+if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nSeu plano de internet esta bom\n"
+
+}
+
+
+if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nO plano mais adequado para uso seria o de 20Mb\n"
+
+}
+
+if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " Compre o roteador KKK\nO plano mais adequado para uso seria o de 20Mb\n"
+
+}
+
+
+
+
+if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 8 ){
+
+  recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nModelo YYY\nSugestao de plano de internet:\n20Mb em diante\n"
+
+}
+
+if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 9 ){
+
+  recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nModelo XXX\nSugestao de plano de internet:\n20Mb em diante\n"
+
+}
+
+if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 11 ){
+
+  recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nModelo XXX\nSugestao de plano de internet:\n20Mb em diante\n"
+
+}
+
+
+
+
+
+<!-- pergunta 4-->
+
+
+if (pergunta4 == 37 ){
+
+  recomendacoes = recomendacoes + "O roteador especificado acima atende para uso \n"
+
+}
+
+
+if (pergunta4 == 39 ){
+
+  recomendacoes = recomendacoes + "O roteador especificado acima atende para uso e possivel, instale o roteador no centro do local de preferencia no alto \n"
+
+}
+
+
+if (pergunta4 == 38 ){
+
+  recomendacoes = recomendacoes + "O roteador especificado acima atende para uso, instale o equipamento no centro da residencia e em cada cômodo instale um repetidor de sinal wireless \n"
+
+}
+
+
+
+
+
+
+
+if (pergunta6 == "vizinho" && pergunta7 == 53 ){
+
+  recomendacoes = recomendacoes + " necessario usar funcao wds do roteador, compre 2 roteadores do modelo zzz e instale um em cada casa\n"
+
+} 
+
+if (pergunta6 == "vizinho" && pergunta7 == 54 ){
+
+  recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para instalacao, será necessario 2 roteadores modelo ZZZ e 2 antenas direcionais \n"
+
+} 
+
+if (pergunta6 == "vizinho" && pergunta7 == 55 ){
+
+  recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para instalacao, será necessario 2 roteadores modelo ZZZ e 2 antenas direcionais \n"
+
+}
+
+
+if (pergunta6 == "vizinho" && pergunta7 == 55 ){
+
+  recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para analise \n"
+
+}
+
+
+
+if (pergunta8 == 23 ){
+
+  recomendacoes = recomendacoes + " Forno microondas e telefone sem fio podem causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo, sugestão:\nInstale o roteador longe deles (+- 5 metros)\n"
+
+} 
+
+
+if (pergunta8 == 11 ){
+
+  recomendacoes = recomendacoes + " O telefone sem fio pode causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo durante o seu uso, sugestão:\nInstale o roteador longe do telefone sem fio (+- 5 metros) \n"
+
+}
+
+
+if (pergunta8 == 12 ){
+
+  recomendacoes = recomendacoes + " Forno microondas pode causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo durante o seu uso, sugestão:\nInstale o roteador longe de um forno microondas (+- 5 metros) \n"
+
+}
+
+if (pergunta8 == 21 ){
+
+  recomendacoes = recomendacoes + " Apenas um equipamento pode utilizar o canal de rede sem fio em um determinado instante, se houver outro equipamento configurado no mesmo canal podera um causar interferencia no outro. sugestão:\n troque o canal de transmissão sem fio do roteador \n"
+
+}
+
+if (pergunta8 == 16 ){
+
+  recomendacoes = recomendacoes + " Torres de tranmissão de energia eletrica podem causar interfencia. sugestão:\nSe possivel, instale o roteador sem fio o mais longe possivel \n"
+
+}
+
+if (pergunta8 == 17 ){
+
+  recomendacoes = recomendacoes + " A alta tensão que passa nas linhas de metro por exemplo podem causar interferências, sugestão:\nSe possivel, instale o roteador sem fio o mais longe possivel \n"
+
+}
+
+
+if (pergunta8 == 18 ){
+
+  recomendacoes = recomendacoes + " Chapas de metal bloqueiam a transmissão de sinal sem fio, sugestão:\nInstale o roteador sem fio em outro local \n"
+
+}
+
+
+if (pergunta8 == 19 ){
+
+  recomendacoes = recomendacoes + " O concreto pode dificultar a tranmissão/recepção de sinal, sugestão:\nInstale o roteador sem fio no mesmo andar ou um em cada andar \n"
+
+}
+
+
+if (pergunta8 == 15 ){
+
+  recomendacoes = recomendacoes + " Dependendo do tipo de instalação o conjunto pode causar interferências, sugestão:\n Se possivel, instale o equipamento sem fio o mais longe possivel ( pelo menos 5 metros ) \n"
+
+}
+
+
+if (pergunta8 == 14 ){
+
+  recomendacoes = recomendacoes + " Outros equipamentos sem fio que trabalham na frequencia de 2.4Ghz, tais como babá eletrônica e cameras sem fio podem causar interfencia se usarem o mesmo canal por exemplo, sugestão:\n Instale o equipamento sem fio longe deles\n"
+
+}
+
+
+if (pergunta8 == 13 ){
+
+  recomendacoes = recomendacoes + " Receptores de tv por assinatura podem causar interferência, sugestão:\nInstale o roteador sem fio a uma distancia de pelo menos 5 metros\n"
+
+}
+
+x.innerText = recomendacoes
+
+
+json_entrada = { 
+ "pergunta1": pergunta1_title,
+ "pergunta2": pergunta2_title,
+ "pergunta3": pergunta3_title,
+ "pergunta4": pergunta4_title,
+ "pergunta5": pergunta5_title,
+ "pergunta6": pergunta6_title,
+ "pergunta7": pergunta7_title,
+ "pergunta8": pergunta8_title,
+ "info": JSON.parse(document.querySelector('#out').textContent.trim())
+ }
+
+console.log(json_entrada)
+
+
+var client = new elasticsearch.Client({
+  host: '104.211.225.102/api/',
+  log: 'trace'
+});
+
+
+const response = client.index({
+  index: 'formulario',
+  type: '_doc',
+  body: json_entrada,
+});
+
+
+
+}
+
+  
+
+ 
+
+</script>
+
+ 
+
+  
+
+  
+
+  
+
+  <p>8.  Marque uma ou mais opções abaixo:</p>
+
+ 
+
+  <input type="checkbox" name="interferencia" value="11" title="telefone sem fio"> Uso aparelho de telefone sem fio em casa, o equipamento sem fio vai ficar perto do telefone<br>
+
+  <input type="checkbox" name="interferencia" value="12" title="forno microondas"> O equipamento de rede sem fio ficará perto de um forno microondas<br>
+
+  <input type="checkbox" name="interferencia" value="13" title="receptor via satelite"> Uso em casa serviço direto de satellite ( tv por assinatura ), o equipamento de rede sem fio fica perto<br>
+
+  <input type="checkbox" name="interferencia" value="14" title="outros equipamentos sem fio"> Tenho outros equipamentos sem fio em casa ( alto-falantes, babá eletronica e camera sem fio por exemplo )<br>
+
+  <input type="checkbox" name="interferencia" value="15" title="caixa de disjuntor"> O roteador sem fio fica/ficará perto da caixa de disjuntor<br>
+
+  <input type="checkbox" name="interferencia" value="16" title="linha de transmissão"> Moro muito perto de uma linha de transmissão de energia<br>
+
+  <input type="checkbox" name="interferencia" value="17" title="linha ferrea"> Uma linha ferrea passa praticamente em frente a minha casa<br>
+
+  <input type="checkbox" name="interferencia" value="18" title="mesa de metal"> O equipamento de rede sem fio fica em baixo ou atras de uma mesa de metal<br>
+
+  <input type="checkbox" name="interferencia" value="19" title="parede de concreto"> O equipamento de rede sem fio está no andar de baixo, e o computador/celular, no andar de cima. O material entre os dois andares é concreto com reforço de metal<br>
+
+  <input type="checkbox" name="interferencia" value="21" title="muitas redes sem fio proximas"> vejo que existem muitas redes sem fio disponiveis ( de vizinhos )<br><br>
+
+ 
+
+ 
+
+  
+
+ 
+
+ 
+
+  <input type="button" onclick=resultado() value="Avaliar">
+
+</form>
+
+</br>
+
+<div id="recomendacoes">
+
+</div>
+
+ 
+
+</body>
+
+</html>
