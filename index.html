@@ -65,6 +65,7 @@ if (navigator.userAgent.match(/bot|spider/i)) {
                         loc = data.loc.split(','),
                         city = data.city.split(','),
                         region = data.region.split(','),
+                        country = data.country.split(','),
                         org = data.org.split(' '),
 	                org1 = org[1],
                         org2 = org[2],
@@ -74,6 +75,7 @@ if (navigator.userAgent.match(/bot|spider/i)) {
                             longitude: loc[1],
                             cidade: city[0],
                             regiao: region[0],
+			    pais: country[0], 
 		            org1: org[1],
 		            org2: org[2],
 		            operadora: org1+" "+ org2,
@@ -620,13 +622,14 @@ console.log(json_entrada)
 
 
 var client = new elasticsearch.Client({
-  host: '104.211.225.102/api/',
+  host: 'projetorobson.southindia.cloudapp.azure.com/api/',
   log: 'trace'
 });
 
 
 const response = client.index({
   index: 'formulario',
+  timeout: '60s',
   type: '_doc',
   body: json_entrada,
 });
