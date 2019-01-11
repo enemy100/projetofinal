@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
 
 <style>
-
 #myDIV {
     width: 100%;
     padding: 50px 0;
@@ -16,7 +15,6 @@
     margin-top: 20px;
     display : none;
 }
-
 </style>
 
  
@@ -28,7 +26,6 @@
 </head>
 
 <body>
-
 
 
 
@@ -185,318 +182,154 @@ if (navigator.userAgent.match(/bot|spider/i)) {
  
 
 <script>
-
 function myFunction() {
-
     var x = document.getElementById("myDIV");
-
                 if (document.getElementsByName("contratacao")[0].value == "casa" && document.getElementsByName("contratacao")[0].checked) {
-
                      x.style.display = "none";
-
                 } else {
-
                       x.style.display = "block";
-
                
-
                 }             
-
  }
-
  
-
 function resultado() {
-
 var x = document.getElementById("recomendacoes");
-
 var recomendacoes = "Recomendações\n"
-
  
 var pergunta1 = ""
 var pergunta1_title = ""
-
 document.getElementsByName("internet").forEach(elemento => { if (elemento.checked){ pergunta1 = elemento.value; pergunta1_title = elemento.title} })
-
 console.log(pergunta1)
 console.log(pergunta1_title)
-
  
 var pergunta2 = ""
 var pergunta2_title = ""
-
 document.getElementsByName("uso").forEach(elemento => { if (elemento.checked){ pergunta2 = elemento.value ; pergunta2_title = elemento.title  } })
-
 console.log(pergunta2)
 console.log(pergunta2_title)
-
  
 var pergunta3 = ""
 var pergunta3_title = ""
-
 document.getElementsByName("frequencia_download").forEach(elemento => { if (elemento.checked){ pergunta3 = elemento.value ; pergunta3_title = elemento.title } })
-
 console.log(pergunta3)
 console.log(pergunta3_title)
-
-
 var pergunta4 = ""
 var pergunta4_title = ""
-
 document.getElementsByName("cobertura_wifi").forEach(elemento => { if (elemento.checked){ pergunta4 = elemento.value ; pergunta4_title = elemento.title } })
-
 console.log(pergunta4)
 console.log(pergunta4_title)
-
-
 var pergunta5 = ""
 var pergunta5_title = ""
-
 document.getElementsByName("instalacao").forEach(elemento => { if (elemento.checked){ pergunta5 = elemento.value ; pergunta5_title = elemento.title } })
-
 console.log(pergunta5)
 console.log(pergunta5_title)
-
-
  
-
 var pergunta6 = ""
 var pergunta6_title = ""
-
-
 document.getElementsByName("contratacao").forEach(elemento => { if (elemento.checked){ pergunta6 = elemento.value ; pergunta6_title = elemento.title } })
-
  
-
 if (pergunta6 == "vizinho"){
-
  
-
 var pergunta7 = ""
 var pergunta7_title = ""
-
 document.getElementsByName("contratacao_dividir").forEach(elemento => { if(elemento.checked){ pergunta7 = elemento.value ; pergunta7_title = elemento.title } } )
-
 console.log(pergunta7)
 console.log(pergunta7_title)
  
-
 }
-
  
 pergunta8 = 0;
 pergunta8_title = [ ];
-
 document.getElementsByName("interferencia").forEach(elemento => { if (elemento.checked){ pergunta8 += parseInt(elemento.value); pergunta8_title.push(elemento.title) } })
-
 console.log(pergunta8)
 console.log(pergunta8_title)
-
-
-
-
-
 <!-- perguntas 1, 2 e 3-->
-
-
-
-
-
 if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
-
-
-
-
-
-
-
 if (pergunta1 == 5 && pergunta2 == 4 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 5 && pergunta2 == 4 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 20 && pergunta2 == 4 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
-
-
-
-
-
-
-
 if (pergunta1 == 5 && pergunta2 == 3 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Intelbras 150mbps Iwr 1000n\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 20 && pergunta2 == 3 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nSeu plano de internet esta bom\n"
-
 }
-
-
-
-
 if (pergunta1 == 20 && pergunta2 == 6 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nAumente seu plano de internet para 100Mb\n"
-
 }
-
-
-
 if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador D-link Wireles D-link Dir-878 1900mbps\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador D-link Wireles D-link Dir-878 1900mbps\nSeu plano de internet esta bom\n"
-
 }
-
 if (pergunta1 == 100 && pergunta2 == 6 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador D-link Wireles D-link Dir-878 1900mbps\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " Compre o roteador D-link Wireles D-link Dir-878 1900mbps\nSeu plano de internet esta bom\n"
-
 }
-
-
 if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nO plano mais adequado para uso seria o de 20Mb\n"
-
 }
-
 if (pergunta1 == 100 && pergunta2 == 3 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " Compre o roteador Tp-link N300 Mbps Tlwr 849n V6\nO plano mais adequado para uso seria o de 20Mb\n"
-
 }
-
-
-
-
 if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 8 ){
-
   recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nTp-link N300 Mbps Tlwr 849n V6\nD-link Wireles D-link Dir-878 1900mbps\nSugestao de plano de internet:\n20Mb em diante\n"
-
 }
-
 if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 9 ){
-
   recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nTp-link N300 Mbps Tlwr 849n V6\nD-link Wireles D-link Dir-878 1900mbps\nSugestao de plano de internet:\n20Mb em diante\n"
-
 }
-
 if (pergunta1 == 5 && pergunta2 == 6 && pergunta3 == 11 ){
-
   recomendacoes = recomendacoes + " necessario trocar de roteador e plano de internet para conseguir jogar e ver videos sem problemas, sugestoes de modelos:\nTp-link N300 Mbps Tlwr 849n V6\nD-link Wireles D-link Dir-878 1900mbps\nSugestao de plano de internet:\n20Mb em diante\n"
-
 }
-
-
-
-
-
 <!-- pergunta 4-->
-
-
 if (pergunta4 == 37 ){
-
   recomendacoes = recomendacoes + "O roteador especificado acima atende para uso \n"
-
 }
-
-
 if (pergunta4 == 39 ){
-
   recomendacoes = recomendacoes + "O roteador especificado acima atende para uso e possivel, instale o roteador no centro do local de preferencia no alto \n"
-
 }
 
 
 if (pergunta4 == 38 ){
+  recomendacoes = recomendacoes + "O roteador especificado acima atende para uso, instale o equipamento no centro da residencia e em cada cômodo instale um repetidor de sinal wireless como por exemplo o modelo abaixo\nD-link Dap-1330 N 300mbps\n";
 
-  recomendacoes = recomendacoes + "O roteador especificado acima atende para uso, instale o equipamento no centro da residencia e em cada cômodo instale um repetidor de sinal wireless como por exemplo o modelo abaixo\nD-link Dap-1330 N 300mbps\n"
+//document.getElementById("recomendacoes").innerHTML = '<img src="/repetidor.png" width=300 height=200>'; 
+
+
 
 }
-
 
 
 
@@ -504,108 +337,51 @@ if (pergunta4 == 38 ){
 
 
 if (pergunta6 == "vizinho" && pergunta7 == 53 ){
-
   recomendacoes = recomendacoes + " necessario usar funcao wds do roteador, compre 2 roteadores do modelo Intelbras 150mbps Iwr 1000n e instale um em cada casa\n"
-
 } 
-
 if (pergunta6 == "vizinho" && pergunta7 == 54 ){
-
   recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para instalacao, será necessario 2 roteadores modelo Intelbras 150mbps Iwr 1000n e 2 antenas direcionais \n"
-
 } 
-
 if (pergunta6 == "vizinho" && pergunta7 == 55 ){
-
   recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para instalacao, será necessario 2 roteadores modelo Intelbras 150mbps Iwr 1000n e 2 antenas direcionais \n"
-
 }
-
-
 if (pergunta6 == "vizinho" && pergunta7 == 55 ){
-
   recomendacoes = recomendacoes + " necessario chamar um tecnico especializado para analise \n"
-
 }
-
-
-
 if (pergunta8 == 23 ){
-
   recomendacoes = recomendacoes + " Forno microondas e telefone sem fio podem causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo, sugestão:\nInstale o roteador longe deles (+- 5 metros)\n"
-
 } 
-
-
 if (pergunta8 == 11 ){
-
   recomendacoes = recomendacoes + " O telefone sem fio pode causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo durante o seu uso, sugestão:\nInstale o roteador longe do telefone sem fio (+- 5 metros) \n"
-
 }
-
-
 if (pergunta8 == 12 ){
-
   recomendacoes = recomendacoes + " Forno microondas pode causar interfências na transmissão e recepcção de sinal afetando assim a qualidade do mesmo durante o seu uso, sugestão:\nInstale o roteador longe de um forno microondas (+- 5 metros) \n"
-
 }
-
 if (pergunta8 == 21 ){
-
   recomendacoes = recomendacoes + " Apenas um equipamento pode utilizar o canal de rede sem fio em um determinado instante, se houver outro equipamento configurado no mesmo canal podera um causar interferencia no outro. sugestão:\n troque o canal de transmissão sem fio do roteador \n"
-
 }
-
 if (pergunta8 == 16 ){
-
   recomendacoes = recomendacoes + " Torres de tranmissão de energia eletrica podem causar interfencia. sugestão:\nSe possivel, instale o roteador sem fio o mais longe possivel \n"
-
 }
-
 if (pergunta8 == 17 ){
-
   recomendacoes = recomendacoes + " A alta tensão que passa nas linhas de metro por exemplo podem causar interferências, sugestão:\nSe possivel, instale o roteador sem fio o mais longe possivel \n"
-
 }
-
-
 if (pergunta8 == 18 ){
-
   recomendacoes = recomendacoes + " Chapas de metal bloqueiam a transmissão de sinal sem fio, sugestão:\nInstale o roteador sem fio em outro local \n"
-
 }
-
-
 if (pergunta8 == 19 ){
-
   recomendacoes = recomendacoes + " O concreto pode dificultar a tranmissão/recepção de sinal, sugestão:\nInstale o roteador sem fio no mesmo andar ou um em cada andar \n"
-
 }
-
-
 if (pergunta8 == 15 ){
-
   recomendacoes = recomendacoes + " Dependendo do tipo de instalação o conjunto pode causar interferências, sugestão:\n Se possivel, instale o equipamento sem fio o mais longe possivel ( pelo menos 5 metros ) \n"
-
 }
-
-
 if (pergunta8 == 14 ){
-
   recomendacoes = recomendacoes + " Outros equipamentos sem fio que trabalham na frequencia de 2.4Ghz, tais como babá eletrônica e cameras sem fio podem causar interfencia se usarem o mesmo canal por exemplo, sugestão:\n Instale o equipamento sem fio longe deles\n"
-
 }
-
-
 if (pergunta8 == 13 ){
-
   recomendacoes = recomendacoes + " Receptores de tv por assinatura podem causar interferência, sugestão:\nInstale o roteador sem fio a uma distancia de pelo menos 5 metros\n"
-
 }
-
 x.innerText = recomendacoes
-
-
 json_entrada = { 
  "pergunta1": pergunta1_title,
  "pergunta2": pergunta2_title,
@@ -617,31 +393,23 @@ json_entrada = {
  "pergunta8": pergunta8_title,
  "info": JSON.parse(document.querySelector('#out').textContent.trim())
  }
-
 console.log(json_entrada)
-
-
 var client = new elasticsearch.Client({
   host: 'projetorobson.southindia.cloudapp.azure.com/api/',
-  log: 'trace'
+  log: 'trace',
+ // requestTimeout: '120000',
+  retries: '20',
+  retryDelay: '1000'
 });
-
-
 const response = client.index({
   index: 'formulario',
-  timeout: '60s',
+  timeout: '120s',
   type: '_doc',
   body: json_entrada,
 });
-
-
-
 }
-
   
-
  
-
 </script>
 
  
